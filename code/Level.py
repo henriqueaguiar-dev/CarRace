@@ -50,6 +50,7 @@ class Level:
                 if isinstance(ent, Player):
                     ent.score += max(1, int(max(0.0, ent.speed) * 2))
                 if ent.name == 'Player1':
+                    player_score[0] = ent.score
                     self.level_text(14, f'Player1 - Durability: {ent.health} | Distance: {ent.score}',
                                     C_GREEN, (10, 25))
             for event in pygame.event.get():
@@ -67,9 +68,6 @@ class Level:
                 if event.type == EVENT_TIMEOUT:
                     self.timeout -= TIMEOUT_STEP
                     if self.timeout == 0:
-                        for ent in self.entity_list:
-                            if isinstance(ent, Player) and ent.name == 'Player1':
-                                player_score[0] = ent.score
                         return True
 
                 found_player = False

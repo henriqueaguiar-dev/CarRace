@@ -2,7 +2,7 @@ import sys
 from datetime import datetime
 
 import pygame
-from pygame import Surface, KEYDOWN, K_RETURN, K_BACKSPACE, K_ESCAPE
+from pygame import Surface, Rect, KEYDOWN, K_RETURN, K_BACKSPACE, K_ESCAPE
 from pygame.font import Font
 
 from code.Const import C_YELLOW, SCORE_POS, C_WHITE

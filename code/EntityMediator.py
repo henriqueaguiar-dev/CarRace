@@ -1,4 +1,5 @@
 from code.Const import WIN_HEIGHT
+from code.Effects import Explosion, play_crash_sound
 from code.Enemy import Enemy
 from code.Entity import Entity
 from code.Player import Player
@@ -13,7 +14,7 @@ class EntityMediator:
                 ent.health = 0
 
     @staticmethod
-    def __verify_collision_entity(ent1, ent2):
+    def __verify_collision_entity(ent1, ent2, entity_list: list[Entity]):
         valid_interaction = False
         if isinstance(ent1, Player) and isinstance(ent2, Enemy):
             valid_interaction = True
@@ -31,6 +32,12 @@ class EntityMediator:
                 if ent2 not in ent1.colliding_with:
                     ent1.colliding_with.add(ent2)
                     ent2.colliding_with.add(ent1)
+                    crash_pos = (
+                        (ent1.rect.centerx + ent2.rect.centerx) // 2,
+                        (ent1.rect.centery + ent2.rect.centery) // 2,
+                    )
+                    entity_list.append(Explosion(crash_pos))
+                    play_crash_sound()
                     if isinstance(ent1, Player):
                         ent1.health -= 1
                     else:
@@ -61,7 +68,7 @@ class EntityMediator:
             EntityMediator.__verify_collision_window(entity1)
             for j in range(i + 1, len(entity_list)):
                 entity2 = entity_list[j]
-                EntityMediator.__verify_collision_entity(entity1, entity2)
+                EntityMediator.__verify_collision_entity(entity1, entity2, entity_list)
 
     @staticmethod
     def verify_health(entity_list: list[Entity]):
