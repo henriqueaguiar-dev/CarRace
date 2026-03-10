@@ -1,23 +1,31 @@
-![alt text](https://github.com/borinvini/MountainShooter/blob/main/asset/Player1.png?raw=true "Mountain Shooter") Mountain Shooter ![alt text](https://github.com/borinvini/MountainShooter/blob/main/asset/Player1.png?raw=true "Mountain Shooter")
-===============
- 
+Car Race
+========
 
 ### About
 
-Mountain Shooter is a 2D arcade game developed with Pygame. The game has 2 levels and each level level end with a timeout event.
-Can be played coop (2 players).
-Score is saved in database (SQLite3))
+Car Race is a 2D racing game developed with Pygame. The game has 2 levels and each level ends with a timeout event.
+Single-player distance is saved in a SQLite3 database.
 
+### Controls
 
-### Feel free if you want to contribute.
+Player 1: Arrow keys (accelerate/brake/steer)
 
+### Setup (macOS)
 
+Recommended (Python 3.12 with wheels):
+1. `brew install python@3.12`
+2. `/opt/homebrew/opt/python@3.12/bin/python3.12 -m venv .venv`
+3. `source .venv/bin/activate`
+4. `python -m pip install -U pip`
+5. `python -m pip install -r requirements.txt`
 
-GAME MENU
+If you are on Python 3.14, pip will try to build Pygame from source. You will need SDL headers:
+1. `brew install sdl2 sdl2_image sdl2_mixer sdl2_ttf pkg-config`
+2. `python -m pip install -r requirements.txt`
 
-![Menu](https://github.com/user-attachments/assets/c9524f59-6ebd-443a-82c0-53b63eb2128f)
+No virtualenv (system Python):
+1. `python3 -m pip install --user --break-system-packages -r requirements.txt`
 
-GAME LEVEL 1
+### Run
 
-![Level1](https://github.com/user-attachments/assets/8af63514-178d-44c9-9eb0-299e0aee0933)
-
+`python main.py`

@@ -15,21 +15,24 @@ class EntityFactory:
         match entity_name:
             case 'Level1Bg':
                 list_bg = []
-                for i in range(7):  # level1bg images number
-                    list_bg.append(Background(f'Level1Bg{i}', (0, 0)))
-                    list_bg.append(Background(f'Level1Bg{i}', (WIN_WIDTH, 0)))
+                for name in ('Level1Bg4',):
+                    list_bg.append(Background(name, (0, 0)))
+                    list_bg.append(Background(name, (0, -WIN_HEIGHT)))
                 return list_bg
             case 'Level2Bg':
                 list_bg = []
-                for i in range(5):  # level2bg images number
-                    list_bg.append(Background(f'Level2Bg{i}', (0, 0)))
-                    list_bg.append(Background(f'Level2Bg{i}', (WIN_WIDTH, 0)))
+                for name in ('Level2Bg3',):
+                    list_bg.append(Background(name, (0, 0)))
+                    list_bg.append(Background(name, (0, -WIN_HEIGHT)))
                 return list_bg
             case 'Player1':
-                return Player('Player1', (10, WIN_HEIGHT / 2 - 30))
-            case 'Player2':
-                return Player('Player2', (10, WIN_HEIGHT / 2 + 30))
+                road_left = int(WIN_WIDTH * 0.22)
+                return Player('Player1', (road_left + 10, WIN_HEIGHT - 90))
             case 'Enemy1':
-                return Enemy('Enemy1', (WIN_WIDTH + 10, random.randint(40, WIN_HEIGHT - 40)))
+                road_left = int(WIN_WIDTH * 0.22)
+                road_right = int(WIN_WIDTH * 0.78)
+                return Enemy('Enemy1', (random.randint(road_left + 10, road_right - 60), random.randint(-200, -60)))
             case 'Enemy2':
-                return Enemy('Enemy2', (WIN_WIDTH + 10, random.randint(40, WIN_HEIGHT - 40)))
+                road_left = int(WIN_WIDTH * 0.22)
+                road_right = int(WIN_WIDTH * 0.78)
+                return Enemy('Enemy2', (random.randint(road_left + 10, road_right - 60), random.randint(-220, -80)))
