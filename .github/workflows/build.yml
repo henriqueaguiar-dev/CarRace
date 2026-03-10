@@ -23,7 +23,7 @@ jobs:
           pip install pyinstaller
 
       - name: Gerar executável
-        run: pyinstaller --onefile --windowed main.py
+        run: pyinstaller --clean -y main.spec
 
       - name: Enviar artefato
         uses: actions/upload-artifact@v4
